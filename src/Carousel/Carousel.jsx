@@ -5,6 +5,10 @@ import CarouselItem from "./CarouselItem";
 function Carousel({ images, intervalSeconds = 3 }) {
   const [selected, setSelected] = useState(0);
 
+  function move(step) {
+    setSelected((prev) => prev + step);
+  }
+
   return (
     <div className="carousel">
       {images.map(
@@ -13,6 +17,13 @@ function Carousel({ images, intervalSeconds = 3 }) {
             <CarouselItem src={image} alt={`תמונה ${index + 1}`} />
           )
       )}
+
+      <button className="carousel-arrow prev" onClick={() => move(-1)}>
+        ❮
+      </button>
+      <button className="carousel-arrow next" onClick={() => move(1)}>
+        ❯
+      </button>
 
       <div className="carousel-dots">
         {images.map((image, index) => (
