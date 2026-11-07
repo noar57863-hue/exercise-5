@@ -10,16 +10,11 @@ function Carousel({ images, intervalSeconds = 3 }) {
   }
 
   useEffect(() => {
-    console.log("effect: starting timer, selected =", selected);
-
     const timer = setTimeout(() => {
       setSelected((prev) => (prev + 1) % images.length);
     }, intervalSeconds * 1000);
 
-    return () => {
-      console.log("cleanup: clearing timer");
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [selected, intervalSeconds, images.length]);
 
   return (
